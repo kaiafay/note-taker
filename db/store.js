@@ -11,6 +11,7 @@ class Store {
     read() {
         return readFileAsync('db/db.json', 'utf-8');
     };
+
     // write method
     write(note) {
         return writeFileAsync('db/db.json', JSON.stringify(note));
@@ -33,6 +34,7 @@ class Store {
 
     // add note method
     addNote(note) {
+        // destructure and set note title and text to variable
         const { title, text } = note;
 
         // check if note is missing title or text
