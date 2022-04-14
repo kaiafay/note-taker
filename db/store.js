@@ -49,8 +49,14 @@ class Store {
             .then((updatedNotes) => this.write(updatedNotes))
             .then(() => newNote);
     };
-// delete method
-// get notes method
+    
+    // delete note method
+    deleteNote(id) {
+        // get notes, remove the note with the corresponding id, write remaining notes again
+        return this.getNotes()
+            .then((notes) => notes.filter((note) => note.id !== id))
+            .then((filteredNotes) => this.write(filteredNotes));
+    };
 };
 
 module.exports = new Store();
