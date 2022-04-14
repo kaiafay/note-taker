@@ -16,7 +16,22 @@ class Store {
         return writeFileAsync('db/db.json', JSON.stringify(note));
     };
 
-    // add notes method
+    // get notes method
+    getNotes() {
+        return this.read().then((notes) => {
+            let parsedNotes;
+
+            // if no notes, send back empty array
+            try {
+                parsedNotes = [].concat(JSON.parse(notes));
+            } catch (err) {
+                parsedNotes = [];
+            }
+            return parsedNotes;
+        });
+    };
+
+    // add note method
     addNote(note) {
         const { title, text } = note;
 
