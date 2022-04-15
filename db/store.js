@@ -1,6 +1,6 @@
 const util = require('util');
 const fs = require('fs');
-const uuid = require('uuid/v1');
+const {v1} = require('uuid');
 
 // create read file and write file for pathways
 const readFileAsync = util.promisify(fs.readFile);
@@ -43,7 +43,7 @@ class Store {
         }
 
         // add unique id using uuid 
-        const newNote = { title, text, id: uuid() };
+        const newNote = { title, text, id: v1() };
 
         // get notes, add new note, write all notes again, return new note
         return this.getNotes()
